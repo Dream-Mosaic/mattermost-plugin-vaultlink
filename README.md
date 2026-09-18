@@ -55,6 +55,8 @@ from the System Console.
 2. In Mattermost: **System Console → Plugin Management → Upload Plugin**.
 3. Enable the plugin, then configure it.
 
+What changed in each version is listed in [CHANGELOG.md](CHANGELOG.md).
+
 ## Configuration
 
 In **System Console → Plugins → Vaultlink**:
