@@ -1,0 +1,20 @@
+bin/
+dist/
+webapp/dist/
+webapp/node_modules/
+webapp/src/manifest.ts
+webapp/.eslintcache
+server/manifest.go
+
+# Local env / secrets
+.env
+.env.*
+
+# Mac
+.DS_Store
+
+# Jetbrains
+.idea/
+
+# VS Code
+.vscode

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <defs>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#407EF6"/>
+      <stop offset="100%" stop-color="#8F37EB"/>
+    </linearGradient>
+
+    <g id="obsidian-node">
+      <polygon points="0,0 -101,24 -37,-120" fill="#8B5CF6"/>
+      <polygon points="0,0 -37,-120 19,-112 99,-16 51,104" fill="#8B5CF6"/>
+      <polygon points="0,0 51,104 -37,128 -101,24" fill="#4C1D95"/>
+    </g>
+
+    <mask id="gap-mask">
+      <rect x="0" y="0" width="512" height="512" fill="white"/>
+      <circle cx="256" cy="280" r="103.34" fill="black"/>
+    </mask>
+
+    <!-- The plugin mark, self-contained so it can be placed as a unit -->
+    <g id="vaultlink-mark">
+      <g mask="url(#gap-mask)">
+        <path d="M 256 280 L 256 80" stroke="#4C1D95" stroke-width="16.8" stroke-linecap="round"/>
+        <path d="M 256 280 L 110 390 M 256 280 L 402 390" stroke="#8B5CF6" stroke-width="16.8" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(256, 280) scale(1.056)">
+        <circle cx="0" cy="0" r="89.86" fill="#3B82F6"/>
+        <circle cx="0" cy="0" r="58.3" fill="#FFFFFF"/>
+        <circle cx="2.5" cy="-7.0" r="42" fill="#3B82F6"/>
+        <g transform="rotate(20) translate(0, -27) translate(0, -34) scale(1.2) translate(0, 34)">
+          <path d="M 0,-34 L 15,14 A 15,15 0 0,1 -15,14 Z" fill="none" stroke="#3B82F6" stroke-width="32" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M 0,-34 L 15,14 A 15,15 0 0,1 -15,14 Z" fill="#FFFFFF"/>
+        </g>
+      </g>
+      <use href="#obsidian-node" transform="translate(256, 80) scale(0.40)"/>
+      <use href="#obsidian-node" transform="translate(110, 390) scale(0.40)"/>
+      <use href="#obsidian-node" transform="translate(402, 390) scale(0.40)"/>
+    </g>
+  </defs>
+
+  <rect width="1280" height="640" fill="#16141C"/>
+
+  <!-- Mark, left, optically centred on the text block -->
+  <g transform="translate(129.0, 129.7) scale(0.66)">
+    <use href="#vaultlink-mark"/>
+  </g>
+
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+    <text x="492" y="258" fill="#FFFFFF" font-size="76" font-weight="700" letter-spacing="-1">Vaultlink</text>
+    <text x="492" y="332" fill="#A9A2BD" font-size="29" font-weight="400">
+      <tspan x="492" dy="0">Search your Obsidian vault from inside</tspan>
+      <tspan x="492" dy="42">Mattermost and drop a link to any note</tspan>
+      <tspan x="492" dy="42">straight into the conversation.</tspan>
+    </text>
+  </g>
+
+  <rect x="492" y="442" width="96" height="7" rx="3.5" fill="url(#rule)"/>
+</svg>

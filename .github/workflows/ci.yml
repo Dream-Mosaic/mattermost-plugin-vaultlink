@@ -1,0 +1,79 @@
+name: CI
+
+# Self-contained CI. We intentionally do NOT use the upstream reusable workflow
+# (mattermost/actions-workflows/.github/workflows/plugin-ci.yml). Its build step
+# uploads the plugin .tar.gz as a GitHub artifact via a composite action we can't
+# configure, and that artifact is only ever consumed by its `delivery` job — which
+# is gated on `github.repository_owner == 'mattermost'` and so never runs on this
+# fork. The result was uploaded-but-unused artifacts piling up until they hit the
+# free-plan storage quota and broke CI. Running the same checks inline (lint, test,
+# build) gives identical coverage with no artifact upload. Deploys are handled
+# separately by deploy.yml (which rebuilds with `make dist`), so nothing here needs
+# to persist the build output.
+
+on:
+  pull_request:
+    paths:
+      - "server/**"
+      - "webapp/**"
+      - "plugin.json"
+      - "go.mod"
+      - "go.sum"
+      - "Makefile"
+      - "build/**"
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Lint Go (golangci-lint via make check-style)
+        run: make check-style
+
+      - name: Type-check and lint webapp
+        run: cd webapp && npm ci && npm run check-types && npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Run Go tests
+        run: make test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build plugin bundle (make dist)
+        run: make dist

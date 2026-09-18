@@ -1,0 +1,7 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/dream-mosaic/mattermost-plugin-vaultlink/security/advisories/new
+    about: >
+      Vaultlink handles CouchDB credentials and an end-to-end-encryption passphrase.
+      Please report vulnerabilities privately here rather than in a public issue.

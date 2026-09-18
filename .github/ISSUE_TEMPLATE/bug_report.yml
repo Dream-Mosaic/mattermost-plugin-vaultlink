@@ -1,0 +1,94 @@
+name: Bug report
+description: Something in Vaultlink isn't working
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this.
+
+        Most Vaultlink problems turn out to be environmental rather than code, so the
+        questions below are the ones that actually narrow it down. The server log field
+        in particular usually identifies the cause on its own.
+
+        **Found a security vulnerability?** Don't file it here — use
+        [private vulnerability reporting](https://github.com/dream-mosaic/mattermost-plugin-vaultlink/security/advisories/new).
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what you got instead.
+      placeholder: |
+        I typed `/obs kan` and expected to see my Kanban note in the autocomplete,
+        but the list came back empty.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sync-method
+    attributes:
+      label: How is your Obsidian vault synced?
+      description: >
+        Vaultlink reads the vault index out of the CouchDB database that Self-Hosted
+        LiveSync replicates into. It cannot work with any other sync method.
+      options:
+        - Obsidian Self-Hosted LiveSync (CouchDB)
+        - Obsidian Sync (official)
+        - Git
+        - Syncthing / Dropbox / iCloud / other file sync
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: e2ee
+    attributes:
+      label: LiveSync end-to-end encryption and path obfuscation
+      description: Found in LiveSync's settings under Remote Database Configuration.
+      options:
+        - E2EE on, path obfuscation on
+        - E2EE on, path obfuscation off
+        - E2EE off
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Server logs
+      description: >
+        From System Console → Server Logs, paste any lines mentioning "vault" or
+        "Vaultlink". The lines beginning `Vault load skipped undecryptable paths` or
+        `Failed to load vault` are the most useful — a nonzero skipped count usually
+        means the E2EE passphrase or obfuscation setting doesn't match the vault.
+      render: text
+    validations:
+      required: false
+
+  - type: input
+    id: vaultlink-version
+    attributes:
+      label: Vaultlink version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: mattermost-version
+    attributes:
+      label: Mattermost server version
+      placeholder: "11.6.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: anything-else
+    attributes:
+      label: Anything else
+      description: >
+        Reverse proxies between Mattermost and CouchDB, unusual vault names, anything you
+        already tried.
+    validations:
+      required: false

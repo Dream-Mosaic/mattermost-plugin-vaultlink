@@ -1,0 +1,43 @@
+name: Release
+
+# Public release workflow. Pushing a version tag (e.g. v1.2.0) builds the plugin
+# bundle and attaches it to a GitHub Release. The tag also becomes the plugin
+# version: plugin.json carries no `version` field, so `make dist` derives it from
+# `git describe --tags` at build time (see build/manifest/main.go).
+#
+# This is the artifact end users download and upload via
+# System Console -> Plugin Management -> Upload Plugin.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write # required to create the Release and upload assets
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # make dist needs full tag history for the version
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Build plugin bundle (make dist)
+        run: make dist
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.tar.gz --generate-notes

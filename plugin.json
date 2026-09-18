@@ -1,0 +1,77 @@
+{
+    "id": "com.dreammosaic.vaultlink",
+    "name": "Vaultlink",
+    "description": "Search your Obsidian vault from inside Mattermost with /obs — autocompletes note names and drops an obsidian:// link straight into the conversation.",
+    "homepage_url": "https://github.com/dream-mosaic/mattermost-plugin-vaultlink",
+    "support_url": "https://github.com/dream-mosaic/mattermost-plugin-vaultlink/issues",
+    "icon_path": "assets/vaultlink-icon.svg",
+    "min_server_version": "6.2.1",
+    "server": {
+        "executables": {
+            "linux-amd64": "server/dist/plugin-linux-amd64",
+            "linux-arm64": "server/dist/plugin-linux-arm64",
+            "darwin-amd64": "server/dist/plugin-darwin-amd64",
+            "darwin-arm64": "server/dist/plugin-darwin-arm64",
+            "windows-amd64": "server/dist/plugin-windows-amd64.exe"
+        }
+    },
+    "webapp": {
+        "bundle_path": "webapp/dist/main.js"
+    },
+    "settings_schema": {
+        "header": "",
+        "footer": "",
+        "settings": [
+            {
+                "key": "CouchDBURL",
+                "display_name": "CouchDB URL",
+                "type": "text",
+                "help_text": "Base URL of the CouchDB instance hosting the Obsidian LiveSync database (e.g. https://couch.example.com).",
+                "placeholder": "https://couch.example.com"
+            },
+            {
+                "key": "CouchDBUsername",
+                "display_name": "CouchDB Username",
+                "type": "text",
+                "help_text": "CouchDB user with read access to the LiveSync database.",
+                "placeholder": ""
+            },
+            {
+                "key": "CouchDBPassword",
+                "display_name": "CouchDB Password",
+                "type": "text",
+                "secret": true,
+                "help_text": "Password for the CouchDB user.",
+                "placeholder": ""
+            },
+            {
+                "key": "CouchDBDatabase",
+                "display_name": "CouchDB Database",
+                "type": "text",
+                "help_text": "Name of the CouchDB database used by Obsidian LiveSync.",
+                "placeholder": ""
+            },
+            {
+                "key": "CouchDBPassphrase",
+                "display_name": "E2EE Passphrase",
+                "type": "text",
+                "secret": true,
+                "help_text": "End-to-end encryption passphrase configured in Obsidian LiveSync.",
+                "placeholder": ""
+            },
+            {
+                "key": "VaultName",
+                "display_name": "Vault Name",
+                "type": "text",
+                "help_text": "Obsidian vault name used in obsidian:// deep-link URIs. Must match the vault name in every team member's local Obsidian install.",
+                "placeholder": "MyVault"
+            },
+            {
+                "key": "ReloadVault",
+                "display_name": "Reload Vault",
+                "type": "custom",
+                "help_text": "Reload the vault index from CouchDB."
+            }
+        ]
+    }
+}

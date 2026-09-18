@@ -1,0 +1,27 @@
+{
+  "name": "mattermost-plugin-vaultlink",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode=production",
+    "build:watch": "webpack --mode=development --watch",
+    "check-types": "tsc",
+    "lint": "eslint --ignore-pattern node_modules --ignore-pattern dist --ext=.js,.jsx,.tsx,.ts . --quiet --cache",
+    "fix": "eslint --ignore-pattern node_modules --ignore-pattern dist --ext=.js,.jsx,.tsx,.ts . --quiet --fix --cache"
+  },
+  "devDependencies": {
+    "@mattermost/eslint-plugin": "1.1.0-0",
+    "@mattermost/types": "^11.1.0",
+    "@types/react": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.3.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.0"
+  }
+}
