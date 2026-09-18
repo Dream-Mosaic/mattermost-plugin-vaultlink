@@ -1,7 +1,5 @@
+# GitHub adds its own "Report a security vulnerability" entry to the chooser
+# whenever SECURITY.md exists, so no contact_link is declared here — a second
+# one duplicates it under the same name. SECURITY.md carries the detail and the
+# private-reporting route.
 blank_issues_enabled: false
-contact_links:
-  - name: Report a security vulnerability
-    url: https://github.com/dream-mosaic/mattermost-plugin-vaultlink/security/advisories/new
-    about: >
-      Vaultlink handles CouchDB credentials and an end-to-end-encryption passphrase.
-      Please report vulnerabilities privately here rather than in a public issue.
