@@ -23,16 +23,17 @@ on:
       - "Makefile"
       - "build/**"
       - ".github/workflows/ci.yml"
+  # Deliberately unfiltered. These jobs are required status checks, and a
+  # workflow skipped by a path filter never reports its check at all -- the PR
+  # then waits forever on "Expected - Waiting for status to be reported" and
+  # cannot be merged. GitHub's guidance is explicit: do not path-filter a
+  # workflow that is required to pass before merging. The push trigger above
+  # keeps its filters, since nothing gates it.
+  #
+  # If the suite ever gets slow enough that this is annoying, gate the
+  # expensive jobs with a job-level `if:` instead -- a job skipped by a
+  # conditional reports Success, so required checks stay satisfied.
   pull_request:
-    paths:
-      - "server/**"
-      - "webapp/**"
-      - "plugin.json"
-      - "go.mod"
-      - "go.sum"
-      - "Makefile"
-      - "build/**"
-      - ".github/workflows/ci.yml"
 
 permissions:
   contents: read
