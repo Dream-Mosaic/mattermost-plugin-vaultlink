@@ -37,7 +37,18 @@ jobs:
       - name: Build plugin bundle (make dist)
         run: make dist
 
+      # Handles both routes to a release. Pushing a bare tag leaves no release
+      # object, so this creates one. Cutting the release from the GitHub UI
+      # creates the release first and *then* fires this workflow via the tag
+      # push -- `gh release create` would fail with "already exists" and the
+      # bundle would never attach. --clobber also makes re-runs idempotent.
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" dist/*.tar.gz --generate-notes
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "Release $GITHUB_REF_NAME already exists; attaching bundle."
+            gh release upload "$GITHUB_REF_NAME" dist/*.tar.gz --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" dist/*.tar.gz --generate-notes
+          fi
