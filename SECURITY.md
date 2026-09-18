@@ -5,7 +5,7 @@
 **Please do not report security vulnerabilities through public GitHub issues.**
 
 Use GitHub's private vulnerability reporting instead: go to the
-[Security tab](https://github.com/dream-mosaic/mattermost-plugin-vaultlink/security)
+[Security tab](https://github.com/dream-mosaic/mattermost-plugin-vaultlink/security/advisories)
 and click **Report a vulnerability**. This opens a private channel visible only to
 the maintainers.
 
