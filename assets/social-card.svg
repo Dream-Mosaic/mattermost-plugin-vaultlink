@@ -44,8 +44,8 @@
     <use href="#vaultlink-mark"/>
   </g>
 
-  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
-    <text x="492" y="258" fill="#FFFFFF" font-size="76" font-weight="700" letter-spacing="-1">Vaultlink</text>
+  <g font-family="Bricolage Grotesque, ui-sans-serif, system-ui, sans-serif">
+    <text x="492" y="258" fill="#FFFFFF" font-size="76" font-weight="700" letter-spacing="-1.52">Vaultlink</text>
     <text x="492" y="332" fill="#A9A2BD" font-size="29" font-weight="400">
       <tspan x="492" dy="0">Search your Obsidian vault from inside</tspan>
       <tspan x="492" dy="42">Mattermost and drop a link to any note</tspan>
